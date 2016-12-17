@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension UIImageView {
+public extension UIImageView {
 	
 	enum ScalingFilters: Int {
 		case linear

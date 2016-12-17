@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIGestureRecognizer {
+public extension UIGestureRecognizer {
 	
 	func removeFromView() {
 		self.view?.removeGestureRecognizer(self)

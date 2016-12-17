@@ -1,5 +1,5 @@
 # SwiftExtensions
-Useful Swift 3 extensions for iOS Development written in Swift 3
+Useful  Swift 3 extensions for iOS Development
 
 ### Extensions for:
   + Array

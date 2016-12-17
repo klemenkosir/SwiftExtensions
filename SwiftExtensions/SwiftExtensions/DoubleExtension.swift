@@ -9,7 +9,7 @@
 import Foundation
 
 
-extension Double {
+public extension Double {
 	
 	var degreesToRadians : Double {
 		return self * M_PI / 180.0
