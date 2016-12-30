@@ -12,7 +12,7 @@ private var autoAdjustFontSizeKey: UInt8 = 0
 private var alignImageAndTitleVerticallyKey: UInt8 = 0
 private var titleVerticalPaddingKey: UInt8 = 0
 
-extension UIButton {
+public extension UIButton {
 	
 	@IBInspectable var autoAdjustFontSize: Bool {
 		get {

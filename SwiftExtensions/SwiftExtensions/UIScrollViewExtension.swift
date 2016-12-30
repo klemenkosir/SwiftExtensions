@@ -12,7 +12,7 @@ private var originalFrameKey: UInt8 = 0
 private var wasUsingAutolayoutKey: UInt8 = 0
 private var bottomOffsetKey: UInt8 = 0
 
-extension UIScrollView {
+public extension UIScrollView {
 	
 	fileprivate var originalFrame: CGRect? {
 		get {

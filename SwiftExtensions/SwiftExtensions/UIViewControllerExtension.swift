@@ -45,7 +45,7 @@ extension UIViewController: UIGestureRecognizerDelegate {
 	}
 }
 
-extension UIWindow {
+public extension UIWindow {
 	
 	fileprivate var versionLabel: UILabel? {
 		get {
