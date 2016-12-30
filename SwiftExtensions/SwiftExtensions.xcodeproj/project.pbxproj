@@ -8,6 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		825E791A1E16FF2700871024 /* UIViewExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B30C1E0556D6001928D9 /* UIViewExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E791B1E16FFE800871024 /* ArrayExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B2FE1E0556D6001928D9 /* ArrayExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E791C1E16FFE800871024 /* CGRectExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B2FF1E0556D6001928D9 /* CGRectExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E791D1E16FFE800871024 /* DataExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B3001E0556D6001928D9 /* DataExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E791E1E16FFE800871024 /* DateExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B3011E0556D6001928D9 /* DateExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E791F1E16FFE800871024 /* StringExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B3021E0556D6001928D9 /* StringExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E79201E16FFE800871024 /* UIAlertControllerExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B3031E0556D6001928D9 /* UIAlertControllerExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E79211E16FFE800871024 /* UIApplicationExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B3041E0556D6001928D9 /* UIApplicationExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E79221E16FFE800871024 /* UIButtonExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B3051E0556D6001928D9 /* UIButtonExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E79231E16FFE800871024 /* UIColorExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B3061E0556D6001928D9 /* UIColorExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E79241E16FFE800871024 /* UIFontExension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B3071E0556D6001928D9 /* UIFontExension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E79251E16FFE800871024 /* UIImageExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B3081E0556D6001928D9 /* UIImageExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E79261E16FFE800871024 /* UIScrollViewExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B3091E0556D6001928D9 /* UIScrollViewExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E79271E16FFE800871024 /* UITextFieldExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B30A1E0556D6001928D9 /* UITextFieldExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E79281E16FFE800871024 /* UIViewControllerExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B30B1E0556D6001928D9 /* UIViewControllerExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E79291E16FFE800871024 /* UIImageViewExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B31E1E055999001928D9 /* UIImageViewExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E792A1E16FFE800871024 /* UILabelExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B3201E055B83001928D9 /* UILabelExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E792B1E16FFE800871024 /* UIGestureRecognizerExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B3221E055B9E001928D9 /* UIGestureRecognizerExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E792C1E16FFE800871024 /* DoubleExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B31C1E055802001928D9 /* DoubleExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		825E792D1E16FFE800871024 /* MKMapViewExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B3241E055CDD001928D9 /* MKMapViewExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		8288B2F81E05564E001928D9 /* SwiftExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 8288B2F61E05564E001928D9 /* SwiftExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8288B30D1E0556D6001928D9 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8288B2FE1E0556D6001928D9 /* ArrayExtension.swift */; };
 		8288B30E1E0556D6001928D9 /* CGRectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8288B2FF1E0556D6001928D9 /* CGRectExtension.swift */; };
@@ -122,6 +141,25 @@
 			files = (
 				8288B2F81E05564E001928D9 /* SwiftExtensions.h in Headers */,
 				825E791A1E16FF2700871024 /* UIViewExtension.swift in Headers */,
+				825E791B1E16FFE800871024 /* ArrayExtension.swift in Headers */,
+				825E791C1E16FFE800871024 /* CGRectExtension.swift in Headers */,
+				825E791D1E16FFE800871024 /* DataExtension.swift in Headers */,
+				825E791E1E16FFE800871024 /* DateExtension.swift in Headers */,
+				825E791F1E16FFE800871024 /* StringExtension.swift in Headers */,
+				825E79201E16FFE800871024 /* UIAlertControllerExtension.swift in Headers */,
+				825E79211E16FFE800871024 /* UIApplicationExtension.swift in Headers */,
+				825E79221E16FFE800871024 /* UIButtonExtension.swift in Headers */,
+				825E79231E16FFE800871024 /* UIColorExtension.swift in Headers */,
+				825E79241E16FFE800871024 /* UIFontExension.swift in Headers */,
+				825E79251E16FFE800871024 /* UIImageExtension.swift in Headers */,
+				825E79261E16FFE800871024 /* UIScrollViewExtension.swift in Headers */,
+				825E79271E16FFE800871024 /* UITextFieldExtension.swift in Headers */,
+				825E79281E16FFE800871024 /* UIViewControllerExtension.swift in Headers */,
+				825E79291E16FFE800871024 /* UIImageViewExtension.swift in Headers */,
+				825E792A1E16FFE800871024 /* UILabelExtension.swift in Headers */,
+				825E792B1E16FFE800871024 /* UIGestureRecognizerExtension.swift in Headers */,
+				825E792C1E16FFE800871024 /* DoubleExtension.swift in Headers */,
+				825E792D1E16FFE800871024 /* MKMapViewExtension.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
