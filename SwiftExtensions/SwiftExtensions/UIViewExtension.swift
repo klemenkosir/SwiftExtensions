@@ -128,7 +128,7 @@ public extension UIView {
 		self.addSubviewFromViewController(vc, useAutoLayout: false)
 	}
 	
-	func addSubviewFromViewController(_ vc: UIViewController, useAutoLayout: Bool) {
+	func addSubviewFromViewController(_ vc: UIViewController, useAutoLayout: Bool, addConstraints: Bool = true) {
 		//		self.superview?.layoutIfNeeded()
 		self.parentViewController?.addChildViewController(vc)
 		vc.view.frame = self.bounds
@@ -137,6 +137,9 @@ public extension UIView {
 		
 		if useAutoLayout {
 			vc.view.translatesAutoresizingMaskIntoConstraints = false
+			if !addConstraints {
+				return
+			}
 			self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[vcView]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["vcView": vc.view]))
 			self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[vcView]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["vcView": vc.view]))
 			self.layoutIfNeeded()
