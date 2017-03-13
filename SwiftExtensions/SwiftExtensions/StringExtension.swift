@@ -50,6 +50,17 @@ public extension String {
 		return string
 	}
 	
+	init(htmlEncodedString: String?) throws {
+		guard let htmlEncodedString = htmlEncodedString, let encodedData = htmlEncodedString.data(using: String.Encoding.utf8) else {
+			throw OptionalError.null
+		}
+		let attributedOptions: [String: Any] = [
+			NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+			NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue]
+		let attributedString = try NSAttributedString(data: encodedData, options: attributedOptions, documentAttributes: nil)
+		self = attributedString.string
+	}
+	
 }
 
 public extension CustomStringConvertible {
