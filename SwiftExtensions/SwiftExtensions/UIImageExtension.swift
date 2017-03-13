@@ -10,8 +10,10 @@ import UIKit
 
 public extension UIImage {
 	
-	func resize(_ newWidth: CGFloat) -> UIImage {
-		
+	func resize(_ newWidth: CGFloat, resizeIfSmaller: Bool = false) -> UIImage {
+		if resizeIfSmaller && self.size.width <= newWidth {
+			return self
+		}
 		let scale = newWidth / self.size.width
 		let newHeight = self.size.height * scale
 		UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
@@ -20,13 +22,6 @@ public extension UIImage {
 		UIGraphicsEndImageContext()
 		
 		return newImage!
-	}
-	
-	func resize(width newWidth: CGFloat, resizeIfSmaller: Bool) -> UIImage {
-		if self.size.width <= newWidth {
-			return self
-		}
-		return self.resize(newWidth)
 	}
 	
 	func crop(toRect rect:CGRect) -> UIImage? {
