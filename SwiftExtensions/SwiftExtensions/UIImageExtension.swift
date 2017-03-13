@@ -11,7 +11,7 @@ import UIKit
 public extension UIImage {
 	
 	func resize(_ newWidth: CGFloat, resizeIfSmaller: Bool = false) -> UIImage {
-		if resizeIfSmaller && self.size.width <= newWidth {
+		if self.size.width <= newWidth && !resizeIfSmaller {
 			return self
 		}
 		let scale = newWidth / self.size.width
