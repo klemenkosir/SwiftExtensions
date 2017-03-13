@@ -51,8 +51,9 @@ public extension String {
 	}
 	
 	init(htmlEncodedString: String?) throws {
+		self.init()
 		guard let htmlEncodedString = htmlEncodedString, let encodedData = htmlEncodedString.data(using: String.Encoding.utf8) else {
-			throw OptionalError.null
+			return
 		}
 		let attributedOptions: [String: Any] = [
 			NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
