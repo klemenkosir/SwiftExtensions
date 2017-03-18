@@ -15,6 +15,7 @@ public enum UIViewAddAnimation {
 
 private var viewIdentifierKey: UInt8 = 0
 private var drawDottedLineKey: UInt8 = 0
+private var isShimmeringKey: UInt8 = 0
 
 public extension UIView {
 	
@@ -112,6 +113,17 @@ public extension UIView {
 			self.layer.shadowOpacity = newValue
 		}
 	}
+	
+	@IBInspectable var isShimmering: Bool {
+		get {
+			return (objc_getAssociatedObject(self, &isShimmeringKey) as? NSNumber)?.boolValue ?? false
+		}
+		set(newValue) {
+			let nv = NSNumber(value: newValue)
+			objc_setAssociatedObject(self, &isShimmeringKey, nv, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+		}
+	}
+	
 	
 	var parentViewController: UIViewController? {
 		var parentResponder: UIResponder? = self
@@ -273,5 +285,33 @@ public extension UIView {
 		shapeLayer.lineWidth = 0.5
 		shapeLayer.lineDashPattern = [NSNumber(value: 0.5 as Float), NSNumber(value: 0.5 as Float)]
 		self.layer.addSublayer(shapeLayer)
+	}
+	
+	func startShimmering(duration: Float = 1.5) {
+		if isShimmering {
+			return
+		}
+		let light = UIColor(white: 0.0, alpha: 0.6).cgColor
+		let dark = UIColor.black.cgColor
+		
+		let gradient = CAGradientLayer()
+		gradient.colors = [dark, light, dark]
+		gradient.frame = CGRect(x: -self.bounds.size.width, y: 0, width: 3*self.bounds.size.width, height: self.bounds.size.height)
+		gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+		gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+		gradient.locations = [0.0, 0.2, 0.4]
+		self.layer.mask = gradient
+		
+		let animation = CABasicAnimation(keyPath: "locations")
+		animation.fromValue = [0.0, 0.2, 0.4]
+		animation.toValue = [0.6, 0.8, 1.0]
+		animation.duration = CFTimeInterval(duration)
+		animation.repeatCount = Float.greatestFiniteMagnitude
+		gradient.add(animation, forKey: "shimmer")
+		
+	}
+	
+	func stopShimmering() {
+		self.layer.mask = nil
 	}
 }
