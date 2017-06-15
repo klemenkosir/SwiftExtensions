@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8213F3031EF273ED00A963E6 /* URLSessionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8213F3021EF273ED00A963E6 /* URLSessionExtension.swift */; };
 		825E791A1E16FF2700871024 /* UIViewExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B30C1E0556D6001928D9 /* UIViewExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		825E791B1E16FFE800871024 /* ArrayExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B2FE1E0556D6001928D9 /* ArrayExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		825E791C1E16FFE800871024 /* CGRectExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B2FF1E0556D6001928D9 /* CGRectExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -51,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8213F3021EF273ED00A963E6 /* URLSessionExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionExtension.swift; sourceTree = "<group>"; };
 		8288B2F31E05564E001928D9 /* SwiftExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8288B2F61E05564E001928D9 /* SwiftExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftExtensions.h; sourceTree = "<group>"; };
 		8288B2F71E05564E001928D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				8288B3221E055B9E001928D9 /* UIGestureRecognizerExtension.swift */,
 				8288B31C1E055802001928D9 /* DoubleExtension.swift */,
 				8288B3241E055CDD001928D9 /* MKMapViewExtension.swift */,
+				8213F3021EF273ED00A963E6 /* URLSessionExtension.swift */,
 			);
 			path = SwiftExtensions;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				8288B3251E055CDD001928D9 /* MKMapViewExtension.swift in Sources */,
 				8288B3121E0556D6001928D9 /* UIAlertControllerExtension.swift in Sources */,
 				8288B3171E0556D6001928D9 /* UIImageExtension.swift in Sources */,
+				8213F3031EF273ED00A963E6 /* URLSessionExtension.swift in Sources */,
 				8288B3111E0556D6001928D9 /* StringExtension.swift in Sources */,
 				8288B3151E0556D6001928D9 /* UIColorExtension.swift in Sources */,
 				8288B31D1E055802001928D9 /* DoubleExtension.swift in Sources */,
