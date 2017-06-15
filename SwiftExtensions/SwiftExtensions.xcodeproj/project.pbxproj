@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8213F3031EF273ED00A963E6 /* URLSessionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8213F3021EF273ED00A963E6 /* URLSessionExtension.swift */; };
+		8213F3041EF275C100A963E6 /* URLSessionExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8213F3021EF273ED00A963E6 /* URLSessionExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		825E791A1E16FF2700871024 /* UIViewExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B30C1E0556D6001928D9 /* UIViewExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		825E791B1E16FFE800871024 /* ArrayExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B2FE1E0556D6001928D9 /* ArrayExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		825E791C1E16FFE800871024 /* CGRectExtension.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8288B2FF1E0556D6001928D9 /* CGRectExtension.swift */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -160,6 +161,7 @@
 				825E79281E16FFE800871024 /* UIViewControllerExtension.swift in Headers */,
 				825E79291E16FFE800871024 /* UIImageViewExtension.swift in Headers */,
 				825E792A1E16FFE800871024 /* UILabelExtension.swift in Headers */,
+				8213F3041EF275C100A963E6 /* URLSessionExtension.swift in Headers */,
 				825E792B1E16FFE800871024 /* UIGestureRecognizerExtension.swift in Headers */,
 				825E792C1E16FFE800871024 /* DoubleExtension.swift in Headers */,
 				825E792D1E16FFE800871024 /* MKMapViewExtension.swift in Headers */,
