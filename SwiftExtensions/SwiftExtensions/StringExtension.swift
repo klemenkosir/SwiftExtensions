@@ -64,8 +64,8 @@ public extension String {
 	
 }
 
-public extension CustomStringConvertible {
-	var stringValue: String {
-		return "\(self)"
-	}
-}
+//public extension CustomStringConvertible {
+//	var stringValue: String {
+//		return "\(self)"
+//	}
+//}
