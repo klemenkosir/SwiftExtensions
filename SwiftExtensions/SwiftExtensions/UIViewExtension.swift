@@ -196,6 +196,22 @@ public extension UIView {
 		vc.didMove(toParentViewController: self.parentViewController)
 	}
 	
+	func view(withIdentifier identifier: String) -> UIView? {
+		return viewRec(withIdentifier: identifier, view: self)
+	}
+	
+	private func viewRec(withIdentifier identifier: String, view: UIView) -> UIView? {
+		if view.identifier == identifier {
+			return view
+		}
+		for sv in view.subviews {
+			if let v = viewRec(withIdentifier: identifier, view: sv) {
+				return v
+			}
+		}
+		return nil
+	}
+	
 	func removeAllGestureRecognizers() {
 		if let gr = self.gestureRecognizers {
 			for gesture in gr {

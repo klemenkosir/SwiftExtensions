@@ -96,8 +96,14 @@ public extension UIScrollView {
 		}
 		self.wasUsingAutoLayout = !self.translatesAutoresizingMaskIntoConstraints
 		self.translatesAutoresizingMaskIntoConstraints = true
+//		self.constraints(withIdentifier: "bottom").forEach({ $0.isActive = false })
 		self.frame = self.originalFrame ?? self.frame
 		self.frame.size.height = self.originalFrame!.size.height - rect.size.height + self.bottomOffset
+		
+		if #available(iOS 11.0, *) {
+			self.frame.size.height += self.safeAreaInsets.bottom
+		}
+		
 		//		self.contentInset = UIEdgeInsetsMake(0.0, 0.0, 65.0, 0.0)
 		self.contentInset = UIEdgeInsets.zero
 		self.layoutIfNeeded()
@@ -110,6 +116,7 @@ public extension UIScrollView {
 		self.frame = self.originalFrame ?? CGRect.zero
 		self.contentInset = UIEdgeInsets.zero
 		self.translatesAutoresizingMaskIntoConstraints = !self.wasUsingAutoLayout!
+//		self.constraints(withIdentifier: "bottom").forEach({ $0.isActive = true })
 		self.layoutIfNeeded()
 		self.originalFrame = nil
 		//		UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: .Slide)
