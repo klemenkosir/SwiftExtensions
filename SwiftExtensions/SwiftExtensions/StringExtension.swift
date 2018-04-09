@@ -27,7 +27,7 @@ public extension String {
 	}
 	
 	var length: Int {
-		return self.characters.count
+		return self.count
 	}
 	
 	func isValidEmail() -> Bool {
@@ -55,9 +55,9 @@ public extension String {
 		guard let htmlEncodedString = htmlEncodedString, let encodedData = htmlEncodedString.data(using: String.Encoding.utf8) else {
 			return
 		}
-		let attributedOptions: [String: Any] = [
-			NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-			NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue]
+		let attributedOptions: [NSAttributedString.DocumentReadingOptionKey: Any] = [
+			NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html,
+			NSAttributedString.DocumentReadingOptionKey.characterEncoding: String.Encoding.utf8]
 		let attributedString = try NSAttributedString(data: encodedData, options: attributedOptions, documentAttributes: nil)
 		self = attributedString.string
 	}

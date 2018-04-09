@@ -78,15 +78,15 @@ public extension UIScrollView {
 	}
 	
 	fileprivate func registerKeyboardNotifications() {
-		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
 	}
 	
 	fileprivate func unregisterKeyboardNotifications() {
 		NotificationCenter.default.removeObserver(self)
 	}
 	
-	@objc fileprivate func keyboardWillShow(_ notification: NSNotification) {
+	@objc func keyboardWillShow(_ notification: Notification) {
 		guard let rect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
 			return
 		}
@@ -94,16 +94,17 @@ public extension UIScrollView {
 			self.layoutIfNeeded()
 			self.originalFrame = self.frame
 		}
+		
 		self.wasUsingAutoLayout = !self.translatesAutoresizingMaskIntoConstraints
 		self.translatesAutoresizingMaskIntoConstraints = true
 //		self.constraints(withIdentifier: "bottom").forEach({ $0.isActive = false })
 		self.frame = self.originalFrame ?? self.frame
 		self.frame.size.height = self.originalFrame!.size.height - rect.size.height + self.bottomOffset
-		
+
 		if #available(iOS 11.0, *) {
-			self.frame.size.height += self.safeAreaInsets.bottom
+			self.frame.size.height += self.superview?.safeAreaInsets.bottom ?? 0
 		}
-		
+
 		//		self.contentInset = UIEdgeInsetsMake(0.0, 0.0, 65.0, 0.0)
 		self.contentInset = UIEdgeInsets.zero
 		self.layoutIfNeeded()
@@ -111,7 +112,7 @@ public extension UIScrollView {
 		//		UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: .Slide)
 	}
 	
-	@objc fileprivate func keyboardWillHide(_ notification: Foundation.Notification) {
+	@objc func keyboardWillHide(_ notification: Notification) {
 		guard self.wasUsingAutoLayout != nil else { return }
 		self.frame = self.originalFrame ?? CGRect.zero
 		self.contentInset = UIEdgeInsets.zero

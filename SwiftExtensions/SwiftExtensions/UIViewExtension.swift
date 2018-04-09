@@ -142,7 +142,9 @@ public extension UIView {
 	
 	func addSubviewFromViewController(_ vc: UIViewController, useAutoLayout: Bool, addConstraints: Bool = true) {
 		//		self.superview?.layoutIfNeeded()
-		self.parentViewController?.addChildViewController(vc)
+		if vc.parent == nil {
+			self.parentViewController?.addChildViewController(vc)
+		}
 		vc.view.frame = self.bounds
 		self.addSubview(vc.view)
 		vc.didMove(toParentViewController: self.parentViewController)

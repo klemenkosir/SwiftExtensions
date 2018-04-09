@@ -15,7 +15,7 @@ public extension UILabel {
 			return self.isVertical
 		}
 		set {
-			self.transform = CGAffineTransform(rotationAngle: CGFloat(-M_PI_2))
+			self.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi/2))
 		}
 	}
 	
@@ -23,7 +23,7 @@ public extension UILabel {
 		if let htmlData = html.data(using: String.Encoding.unicode) {
 			do {
 				self.attributedText = try NSAttributedString(data: htmlData,
-				                                             options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+				                                             options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
 				                                             documentAttributes: nil)
 			} catch let e as NSError {
 				print("Couldn't parse \(html): \(e.localizedDescription)")

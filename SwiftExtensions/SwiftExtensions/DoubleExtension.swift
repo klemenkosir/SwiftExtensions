@@ -12,11 +12,11 @@ import Foundation
 public extension Double {
 	
 	var degreesToRadians : Double {
-		return self * M_PI / 180.0
+		return self * Double.pi / 180.0
 	}
 	
 	var radiansToDegrees : Double {
-		return self * 180.0 / M_PI
+		return self * 180.0 / Double.pi
 	}
 	
 }

@@ -23,23 +23,23 @@ public enum SystemFontWeight : String {
 		if #available(iOS 8.2, *) {
 			switch self {
 			case .UltraLight:
-				return UIFontWeightUltraLight
+				return UIFont.Weight.ultraLight.rawValue
 			case .Thin:
-				return UIFontWeightThin
+				return UIFont.Weight.thin.rawValue
 			case .Light:
-				return UIFontWeightLight
+				return UIFont.Weight.light.rawValue
 			case .Regular:
-				return UIFontWeightRegular
+				return UIFont.Weight.regular.rawValue
 			case .Medium:
-				return UIFontWeightMedium
+				return UIFont.Weight.medium.rawValue
 			case .Semibold:
-				return UIFontWeightSemibold
+				return UIFont.Weight.semibold.rawValue
 			case .Bold:
-				return UIFontWeightBold
+				return UIFont.Weight.bold.rawValue
 			case .Heavy:
-				return UIFontWeightHeavy
+				return UIFont.Weight.heavy.rawValue
 			case .Black:
-				return UIFontWeightBlack
+				return UIFont.Weight.black.rawValue
 			}
 		} else {
 			return nil
@@ -50,7 +50,7 @@ public enum SystemFontWeight : String {
 public extension UIFont {
 	static func systemFontOfSize(_ fontSize:CGFloat, weight:SystemFontWeight) -> UIFont {
 		if #available(iOS 8.2, *) {
-			return UIFont.systemFont(ofSize: fontSize, weight: weight.weightValue!)
+			return UIFont.systemFont(ofSize: fontSize, weight: UIFont.Weight(rawValue: weight.weightValue!))
 			
 		} else {
 			// Fallback on earlier versions
