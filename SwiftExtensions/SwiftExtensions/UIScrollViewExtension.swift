@@ -79,6 +79,7 @@ public extension UIScrollView {
 	
 	fileprivate func registerKeyboardNotifications() {
 		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 	}
 	
@@ -87,17 +88,25 @@ public extension UIScrollView {
 	}
 	
 	@objc fileprivate func keyboardWillShow(_ notification: NSNotification) {
-		guard let rect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+		guard let rect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue/*, (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0 > 0*/  else {
 			return
 		}
 		if self.originalFrame == nil {
-			self.layoutIfNeeded()
+            self.layoutIfNeeded()
 			self.originalFrame = self.frame
 		}
 		self.wasUsingAutoLayout = !self.translatesAutoresizingMaskIntoConstraints
 		self.translatesAutoresizingMaskIntoConstraints = true
-		self.frame = self.originalFrame ?? self.frame
-		self.frame.size.height = self.originalFrame!.size.height - rect.size.height + self.bottomOffset
+        self.frame = self.originalFrame!
+        
+//        let topOffset = self.convert(self.bounds.origin, to: UIApplication.shared.keyWindow).y
+        if #available(iOS 11.0, *) {
+            let safeAreaInsets = UIApplication.shared.keyWindow?.rootViewController?.view.safeAreaInsets ?? .zero
+            self.frame.size.height = self.originalFrame!.size.height - rect.size.height + self.bottomOffset + safeAreaInsets.bottom /*+ topOffset - (safeAreaInsets?.top ?? 0.0)*/
+        } else {
+            // Fallback on earlier versions
+            self.frame.size.height = self.originalFrame!.size.height - rect.size.height + self.bottomOffset /*+ topOffset - 20.0*/
+        }
 		//		self.contentInset = UIEdgeInsetsMake(0.0, 0.0, 65.0, 0.0)
 		self.contentInset = UIEdgeInsets.zero
 		self.layoutIfNeeded()

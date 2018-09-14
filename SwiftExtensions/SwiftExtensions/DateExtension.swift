@@ -160,6 +160,84 @@ public extension Date {
 		}
 	}
 	
+    
+    init?(optionalFromString string: String, format:DateFormat, timeZone: TimeZoneEnum = .local)
+    {
+        if string.isEmpty {
+            return nil
+        }
+        
+        let string = string as NSString
+        
+        let zone: Foundation.TimeZone
+        
+        switch timeZone {
+        case .local:
+            zone = Foundation.NSTimeZone.local
+        case .utc:
+            zone = Foundation.TimeZone(secondsFromGMT: 0)!
+        }
+        
+        switch format {
+            
+        case .dotNet:
+            
+            let startIndex = string.range(of: "(").location + 1
+            let endIndex = string.range(of: ")").location
+            let range = NSRange(location: startIndex, length: endIndex-startIndex)
+            let milliseconds = (string.substring(with: range) as NSString).longLongValue
+            let interval = TimeInterval(milliseconds / 1000)
+            self.init(timeIntervalSince1970: interval)
+            
+        case .iso8601(let isoFormat):
+            
+            let dateFormat = (isoFormat != nil) ? isoFormat! : ISO8601Format(dateString: string as String)
+            let formatter = Date.formatter(format: dateFormat.rawValue)
+            formatter.locale = Foundation.Locale(identifier: "en_US_POSIX")
+            formatter.timeZone = Foundation.NSTimeZone.local
+            formatter.dateFormat = dateFormat.rawValue
+            if let date = formatter.date(from: string as String) {
+                self.init(timeInterval:0, since:date)
+            } else {
+                return nil
+            }
+            
+        case .rss:
+            
+            var s  = string
+            if string.hasSuffix("Z") {
+                s = s.substring(to: s.length-1).appending("GMT") as NSString
+            }
+            let formatter = Date.formatter(format: RSSFormat)
+            if let date = formatter.date(from: string as String) {
+                self.init(timeInterval:0, since:date)
+            } else {
+                return nil
+            }
+            
+        case .altRSS:
+            
+            var s  = string
+            if string.hasSuffix("Z") {
+                s = s.substring(to: s.length-1).appending("GMT") as NSString
+            }
+            let formatter = Date.formatter(format: AltRSSFormat)
+            if let date = formatter.date(from: string as String) {
+                self.init(timeInterval:0, since:date)
+            } else {
+                return nil
+            }
+            
+        case .custom(let dateFormat):
+            
+            let formatter = Date.formatter(format: dateFormat, timeZone: zone)
+            if let date = formatter.date(from: string as String) {
+                self.init(timeInterval:0, since:date)
+            } else {
+                return nil
+            }
+        }
+    }
 	
 	
 	// MARK: Comparing Dates
@@ -714,11 +792,15 @@ public extension Date {
 	- Parameter date: The date to compare.
 	- Returns The number of days
 	*/
-	func daysBeforeDate(_ date: Date) -> Int
-	{
+	func daysBeforeDate(_ date: Date) -> Int {
 		let interval = date.timeIntervalSince(self)
 		return Int(interval / Date.dayInSeconds())
 	}
+    
+    func yearsBeforeDate(_ date: Date) -> Int {
+        let interval = date.timeIntervalSince(self)
+        return Int(interval / Date.yearInSeconds())
+    }
 	
 	
 	// MARK: Decomposing Dates

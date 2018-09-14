@@ -16,6 +16,8 @@ public enum UIViewAddAnimation {
 private var viewIdentifierKey: UInt8 = 0
 private var drawDottedLineKey: UInt8 = 0
 private var isShimmeringKey: UInt8 = 0
+private var gradientStartColorKey: UInt8 = 0
+private var gradientEndColorKey: UInt8 = 0
 
 public extension UIView {
 	
@@ -123,6 +125,30 @@ public extension UIView {
 			objc_setAssociatedObject(self, &isShimmeringKey, nv, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
 		}
 	}
+    
+    @IBInspectable var gradientStartColor: UIColor? {
+        get {
+            return objc_getAssociatedObject(self, &gradientStartColorKey) as? UIColor
+        }
+        set(newValue) {
+            if let nv = newValue {
+                objc_setAssociatedObject(self, &gradientStartColorKey, nv, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+                initGradient()
+            }
+        }
+    }
+    
+    @IBInspectable var gradientEndColor: UIColor? {
+        get {
+            return objc_getAssociatedObject(self, &gradientEndColorKey) as? UIColor
+        }
+        set(newValue) {
+            if let nv = newValue {
+                objc_setAssociatedObject(self, &gradientEndColorKey, nv, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+                initGradient()
+            }
+        }
+    }
 	
 	
 	var parentViewController: UIViewController? {
@@ -314,4 +340,25 @@ public extension UIView {
 	func stopShimmering() {
 		self.layer.mask = nil
 	}
+    
+    private func initGradient() {
+        guard let startColor = gradientStartColor,
+            let endColor = gradientEndColor else {
+                return
+        }
+        
+        self.layer.sublayers?.forEach({ (sublayer) in
+            if sublayer.name == "gradient" {
+                sublayer.removeFromSuperlayer()
+            }
+        })
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.name = "gradient"
+        gradientLayer.frame = self.bounds
+        gradientLayer.startPoint = .zero
+        gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
+        gradientLayer.colors = [startColor.cgColor, endColor.cgColor]
+        self.layer.insertSublayer(gradientLayer, at: 0)
+    }
 }
