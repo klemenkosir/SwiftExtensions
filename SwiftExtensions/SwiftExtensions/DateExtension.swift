@@ -907,7 +907,7 @@ public extension Date {
 	- Parameter timeZone: The time zone to interpret the date can be .Local, .UTC applies to Custom format only
 	- Returns The date string representation
 	*/
-	func toString(format: DateFormat, timeZone: TimeZoneEnum = .local) -> String
+    func toString(format: DateFormat, timeZone: TimeZoneEnum = .local, locale: Locale = Locale(identifier: "en_US_POSIX")) -> String
 	{
 		var dateFormat: String
 		let zone: Foundation.TimeZone
@@ -936,7 +936,7 @@ public extension Date {
 		}
 		
 		let formatter = Date.formatter(format: dateFormat, timeZone: zone)
-		formatter.locale = Locale(identifier: "en_US_POSIX")
+		formatter.locale = locale
 		return formatter.string(from: self)
 	}
 	
