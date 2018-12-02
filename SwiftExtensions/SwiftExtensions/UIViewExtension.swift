@@ -341,7 +341,7 @@ public extension UIView {
 		self.layer.mask = nil
 	}
     
-    private func initGradient() {
+    func initGradient() {
         guard let startColor = gradientStartColor,
             let endColor = gradientEndColor else {
                 return
@@ -355,10 +355,11 @@ public extension UIView {
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.name = "gradient"
-        gradientLayer.frame = self.bounds
+        gradientLayer.frame = self.layer.bounds
         gradientLayer.startPoint = .zero
         gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
         gradientLayer.colors = [startColor.cgColor, endColor.cgColor]
         self.layer.insertSublayer(gradientLayer, at: 0)
     }
+    
 }

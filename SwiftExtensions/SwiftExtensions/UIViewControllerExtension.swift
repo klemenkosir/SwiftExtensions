@@ -12,7 +12,7 @@ private var versionLabelKey: UInt8 = 0
 
 extension UIViewController: UIGestureRecognizerDelegate {
 	
-	func addViewFromViewController(_ vc: UIViewController) {
+	public func addViewFromViewController(_ vc: UIViewController) {
 		vc.willMove(toParentViewController: self)
 		vc.view.frame = self.view.bounds
 		self.view.addSubview(vc.view)
@@ -20,21 +20,28 @@ extension UIViewController: UIGestureRecognizerDelegate {
 		vc.didMove(toParentViewController: self)
 	}
 	
-	func removeViewAndViewController() {
+	public func removeViewAndViewController() {
 		self.view.removeFromSuperview()
 		self.removeFromParentViewController()
 	}
 	
-	func hideKeyboardWhenTappedAround() {
+	public func hideKeyboardWhenTappedAround() {
 		let tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
 		tap.cancelsTouchesInView = false
 		tap.delegate = self
 		view.addGestureRecognizer(tap)
 	}
 	
-	func dismissKeyboard() {
+	public func dismissKeyboard() {
 		view.endEditing(true)
 	}
+    
+    public func putOnNavigationController() -> UINavigationController! {
+        guard self.navigationController == nil, self.parent == nil else { return nil }
+        let navVC = UINavigationController(rootViewController: self)
+        navVC.navigationBar.isHidden = true
+        return navVC
+    }
 	
 	//GestureRecognizer Delegate
 	public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
