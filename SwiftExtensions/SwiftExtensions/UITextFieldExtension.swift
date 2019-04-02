@@ -17,7 +17,7 @@ public extension UITextField {
 			return objc_getAssociatedObject(self, &placeholderColorKey) as? UIColor
 		}
 		set(newValue) {
-			 self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSForegroundColorAttributeName: newValue!])
+            self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSAttributedString.Key.foregroundColor: newValue!])
 			objc_setAssociatedObject(self, &placeholderColorKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
 		}
 	}

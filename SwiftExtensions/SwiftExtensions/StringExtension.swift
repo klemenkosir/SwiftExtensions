@@ -25,10 +25,6 @@ public extension String {
 	func deleteAllHTMLTags() -> String {
 		return self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
 	}
-	
-	var length: Int {
-		return self.characters.count
-	}
     
     func isValidEmailInternational() -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -61,9 +57,9 @@ public extension String {
 		guard let htmlEncodedString = htmlEncodedString, let encodedData = htmlEncodedString.data(using: String.Encoding.utf8) else {
 			return
 		}
-		let attributedOptions: [String: Any] = [
-			NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-			NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue]
+		let attributedOptions: [NSAttributedString.DocumentReadingOptionKey: Any] = [
+            NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html,
+			NSAttributedString.DocumentReadingOptionKey.characterEncoding: String.Encoding.utf8]
 		let attributedString = try NSAttributedString(data: encodedData, options: attributedOptions, documentAttributes: nil)
 		self = attributedString.string
 	}

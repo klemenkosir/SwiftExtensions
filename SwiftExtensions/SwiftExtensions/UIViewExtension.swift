@@ -168,18 +168,18 @@ public extension UIView {
 	
 	func addSubviewFromViewController(_ vc: UIViewController, useAutoLayout: Bool, addConstraints: Bool = true) {
 		//		self.superview?.layoutIfNeeded()
-		self.parentViewController?.addChildViewController(vc)
+        self.parentViewController?.addChild(vc)
 		vc.view.frame = self.bounds
 		self.addSubview(vc.view)
-		vc.didMove(toParentViewController: self.parentViewController)
+        vc.didMove(toParent: self.parentViewController)
 		
 		if useAutoLayout {
 			vc.view.translatesAutoresizingMaskIntoConstraints = false
 			if !addConstraints {
 				return
 			}
-			self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[vcView]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["vcView": vc.view]))
-			self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[vcView]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["vcView": vc.view]))
+            self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[vcView]|", metrics: nil, views: ["vcView": vc.view]))
+			self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[vcView]|", metrics: nil, views: ["vcView": vc.view]))
 			self.layoutIfNeeded()
 		}
 	}
@@ -202,24 +202,24 @@ public extension UIView {
 		self.addSubview(view)
 		
 		view.translatesAutoresizingMaskIntoConstraints = false
-		self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["view": view]))
-		self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["view": view]))
+		self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", metrics: nil, views: ["view": view]))
+		self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", metrics: nil, views: ["view": view]))
 		self.layoutIfNeeded()
 		
 	}
 	
 	func addSubviewFromViewControllerWithOfset(_ vc: UIViewController, offset: CGPoint) {
-		self.parentViewController?.addChildViewController(vc)
+        self.parentViewController?.addChild(vc)
 		vc.view.frame = self.bounds.offsetBy(dx: offset.x, dy: offset.y)
 		self.addSubview(vc.view)
-		vc.didMove(toParentViewController: self.parentViewController)
+        vc.didMove(toParent: self.parentViewController)
 	}
 	
 	func addSubviewFromViewControllerWithFrame(_ vc: UIViewController, frame: CGRect) {
-		self.parentViewController?.addChildViewController(vc)
+        self.parentViewController?.addChild(vc)
 		vc.view.frame =  frame
 		self.addSubview(vc.view)
-		vc.didMove(toParentViewController: self.parentViewController)
+        vc.didMove(toParent: self.parentViewController)
 	}
 	
 	func removeAllGestureRecognizers() {

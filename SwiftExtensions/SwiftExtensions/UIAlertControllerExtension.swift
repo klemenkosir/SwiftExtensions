@@ -61,7 +61,7 @@ public extension UIAlertController {
 	func show(_ animated: Bool = true, completion: (() -> Void)? = nil) {
 		alertWindow = UIWindow(frame: UIScreen.main.bounds)
 		alertWindow.backgroundColor = .clear
-		alertWindow.windowLevel = UIWindowLevelAlert
+        alertWindow.windowLevel = UIWindow.Level.alert
 		
 		let rootVC = UIViewController()
 		alertWindow.rootViewController = rootVC

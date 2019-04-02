@@ -19,27 +19,27 @@ public enum SystemFontWeight : String {
 	case Heavy = "HelveticaNeue-CondensedBold"
 	case Black = "HelveticaNeue-CondensedBlack"
 	
-	var weightValue:CGFloat? {
+	var weightValue: UIFont.Weight? {
 		if #available(iOS 8.2, *) {
 			switch self {
 			case .UltraLight:
-				return UIFontWeightUltraLight
+                return UIFont.Weight.ultraLight
 			case .Thin:
-				return UIFontWeightThin
+                return UIFont.Weight.thin
 			case .Light:
-				return UIFontWeightLight
+                return UIFont.Weight.light
 			case .Regular:
-				return UIFontWeightRegular
+                return UIFont.Weight.regular
 			case .Medium:
-				return UIFontWeightMedium
+                return UIFont.Weight.medium
 			case .Semibold:
-				return UIFontWeightSemibold
+                return UIFont.Weight.semibold
 			case .Bold:
-				return UIFontWeightBold
+                return UIFont.Weight.bold
 			case .Heavy:
-				return UIFontWeightHeavy
+                return UIFont.Weight.heavy
 			case .Black:
-				return UIFontWeightBlack
+                return UIFont.Weight.black
 			}
 		} else {
 			return nil

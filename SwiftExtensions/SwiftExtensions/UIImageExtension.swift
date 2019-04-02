@@ -41,7 +41,7 @@ public extension UIImage {
 	
 	func fixOrientation() -> UIImage {
 		
-		if self.imageOrientation == UIImageOrientation.up {
+        if self.imageOrientation == UIImage.Orientation.up {
 			return self
 		}
 		
@@ -50,19 +50,21 @@ public extension UIImage {
 		switch self.imageOrientation {
 		case .down, .downMirrored:
 			transform = transform.translatedBy(x: self.size.width, y: self.size.height)
-			transform = transform.rotated(by: CGFloat(M_PI));
+			transform = transform.rotated(by: CGFloat.pi);
 			
 		case .left, .leftMirrored:
 			transform = transform.translatedBy(x: self.size.width, y: 0);
-			transform = transform.rotated(by: CGFloat(M_PI_2));
+			transform = transform.rotated(by: CGFloat.pi/2);
 			
 		case .right, .rightMirrored:
 			transform = transform.translatedBy(x: 0, y: self.size.height);
-			transform = transform.rotated(by: CGFloat(-M_PI_2));
+			transform = transform.rotated(by: -CGFloat.pi/2);
 			
 		case .up, .upMirrored:
 			break
-		}
+        @unknown default:
+            break
+        }
 		
 		
 		switch self.imageOrientation {

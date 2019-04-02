@@ -13,16 +13,16 @@ private var versionLabelKey: UInt8 = 0
 extension UIViewController: UIGestureRecognizerDelegate {
 	
 	public func addViewFromViewController(_ vc: UIViewController) {
-		vc.willMove(toParentViewController: self)
+        vc.willMove(toParent: self)
 		vc.view.frame = self.view.bounds
 		self.view.addSubview(vc.view)
-		self.addChildViewController(vc)
-		vc.didMove(toParentViewController: self)
+        self.addChild(vc)
+        vc.didMove(toParent: self)
 	}
 	
 	public func removeViewAndViewController() {
 		self.view.removeFromSuperview()
-		self.removeFromParentViewController()
+        self.removeFromParent()
 	}
 	
 	public func hideKeyboardWhenTappedAround() {
@@ -32,7 +32,7 @@ extension UIViewController: UIGestureRecognizerDelegate {
 		view.addGestureRecognizer(tap)
 	}
 	
-	public func dismissKeyboard() {
+    @objc public func dismissKeyboard() {
 		view.endEditing(true)
 	}
     
@@ -74,8 +74,8 @@ public extension UIWindow {
 			self.versionLabel!.font = UIFont.systemFont(ofSize: 10.0)
 			self.addSubview(self.versionLabel!)
 			
-			self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[versionLabel]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["versionLabel" : self.versionLabel!]))
-			self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[versionLabel]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["versionLabel" : self.versionLabel!]))
+            self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[versionLabel]|", metrics: nil, views: ["versionLabel" : self.versionLabel!]))
+            self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[versionLabel]|", metrics: nil, views: ["versionLabel" : self.versionLabel!]))
 			
 			let build = Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as! String
 			versionLabel!.text = "Dev Build \(build)"

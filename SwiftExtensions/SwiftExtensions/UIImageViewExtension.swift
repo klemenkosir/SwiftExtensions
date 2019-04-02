@@ -15,50 +15,50 @@ public extension UIImageView {
 		case nearest
 		case trilinear
 		
-		static func fromString(_ string: String) -> Int {
-			switch string {
-			case kCAFilterLinear:
+		static func fromContentsFilter(_ filter: CALayerContentsFilter) -> Int {
+			switch filter {
+			case .linear:
 				return 0
-			case kCAFilterNearest:
+			case .nearest:
 				return 1
-			case kCAFilterTrilinear:
+			case .trilinear:
 				return 2
 			default:
 				return 0
 			}
 		}
 		
-		func toString() -> String {
+		func toContentsFilter() -> CALayerContentsFilter {
 			switch self {
 			case .linear:
-				return kCAFilterLinear
+                return .linear
 			case .nearest:
-				return kCAFilterNearest
+                return .nearest
 			case .trilinear:
-				return kCAFilterTrilinear
+                return .trilinear
 			}
 		}
 	}
 	
 	@IBInspectable var miniFilter: Int {
 		get {
-			return ScalingFilters.fromString(self.layer.minificationFilter)
+            return ScalingFilters.fromContentsFilter(self.layer.minificationFilter)
 		}
 		set {
-			self.layer.minificationFilter = ScalingFilters(rawValue: newValue)?.toString() ?? ""
+			self.layer.minificationFilter = ScalingFilters(rawValue: newValue)?.toContentsFilter() ?? .linear
 		}
 	}
 	
 	@IBInspectable var magFilter: Int {
 		get {
-			return ScalingFilters.fromString(self.layer.magnificationFilter)
+			return ScalingFilters.fromContentsFilter(self.layer.magnificationFilter)
 		}
 		set {
-			self.layer.magnificationFilter = ScalingFilters(rawValue: newValue)?.toString() ?? ""
+			self.layer.magnificationFilter = ScalingFilters(rawValue: newValue)?.toContentsFilter() ?? .linear
 		}
 	}
 	
-	func setImageWithTransition(_ image: UIImage?, transition: UIViewAnimationOptions) {
+    func setImageWithTransition(_ image: UIImage?, transition: UIView.AnimationOptions) {
 		DispatchQueue.main.async { () -> Void in
 			UIView.transition(with: self, duration: 0.2, options: transition, animations: { () -> Void in
 				self.image = image
@@ -68,7 +68,7 @@ public extension UIImageView {
 		}
 	}
 	
-	func setImageWithTransition(_ image: UIImage?, duration: Double, transition: UIViewAnimationOptions) {
+    func setImageWithTransition(_ image: UIImage?, duration: Double, transition: UIView.AnimationOptions) {
 		DispatchQueue.main.async { () -> Void in
 			UIView.transition(with: self, duration: duration, options: transition, animations: { () -> Void in
 				self.image = image
@@ -82,7 +82,7 @@ public extension UIImageView {
 		self.getImage(imageURL, animateOnFirstLoad: true, transition: .transitionCrossDissolve)
 	}
 	
-	func getImage(_ imageURL: String?, animateOnFirstLoad: Bool, transition: UIViewAnimationOptions) {
+    func getImage(_ imageURL: String?, animateOnFirstLoad: Bool, transition: UIView.AnimationOptions) {
 		guard  let imageURL = imageURL else { return }
 		self.image = nil
 		DispatchQueue.global(qos: .utility).async {
